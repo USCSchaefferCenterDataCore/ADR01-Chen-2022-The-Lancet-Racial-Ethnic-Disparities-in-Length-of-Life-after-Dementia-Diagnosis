@@ -1,0 +1,141 @@
+/* formats for variables on the bene_status_month, bene_status_qtr,and bene_status_year files
+   For bene_status_month the format statement is:
+      format enrAB $enrAB. enrHMO $enrHMO. died_inmo $diedmo. dual $dual. 
+             samebdt sameddt $samedt.;
+      format rdsind $rdsind. dual_cstshr $dualcst. dual_stat $dualstat.
+             lis $lis. crdcovsw $crdcov. ptDtype $ptDtype.;  
+   For bene_status_qtr the format statement is:
+      format samebdt sameddt $samedt.;
+      format crdcovsw $crdcov.; 
+   For bene_status_year the format statement is:
+      format esrdflag $esrdflag. 
+             samebdt sameddt $samedt.;
+      format crdcovsw $crdcov.; 
+
+   To use this file:
+   proc format;
+      %include "&fmtlib.bene_status.fmt";
+   Note that &fmtlib is defined in PROGRAMS/setup.inc.  
+   It points to PROGRAMS/FORMATS in the dua home.
+*/
+  value $diedmo
+  "N"="N: alive"
+  "Y"="Y: died this mo"
+  "D"="D: died before mo"
+  "P"="P: died before this yr"
+  ;
+  value $diedyr
+  "N"="N: alive"
+  "Y"="Y: died this yr"
+  "P"="P: died before this yr"
+  ;
+  value $enrAB
+  "Y"="Y: A and B"
+  "A"="A: A only"
+  "B"="B: B only"
+  "N"="N: not A or B"
+  ;
+  value $enrHMO
+  "Y"="Y: HMO"
+  "4"="4: FFS-managed care"
+  "N"="N: not HMO"
+  ;
+  value $dual
+  "Y"="Y: dual"
+  "N"="N: not dual"
+  "X"="X: no medicare"
+  ;
+  value $dualstat
+  "F"="F: full dual"
+  "R"="R: restricted dual"
+  "O"="O: other dual"
+  "N"="N: not dual"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "U"="U: missing"
+  ;
+  value $dualcst
+  "Y"="Y: dual"
+  "N"="N: not dual"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "U"="U: missing"
+  ;
+  value $lisdual
+  "L"="L: LIS"
+  "N"="N: not LIS"
+  "D"="D: dual"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "-"="-: not enr Pt D"
+  "U"="U: missing"
+  ;
+
+  value $lis
+  "Y"="Y: LIS"
+  "N"="N: not LIS"
+  "D"="D: dual"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "-"="-: not enr Pt D"
+  "U"="U: missing"
+  ;
+  value $rdsind
+  "Y"="Y: RDS"
+  "N"="N: no RDS"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "U"="U: missing"
+  ;
+  value $crdcov
+  "0"="0: no cred cov"
+  "1"="1: 1+ mon cred cov"
+  "*"="*: no Pt D enr info"
+  "U"="U: missing"
+   ;   
+  value $egwp
+  "Y"="Y: EGWP PtD plan"
+  "N"="N: not EGWP PtD Plan"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "-"="-: not enr Pt D"
+  "U"="U: missing"
+  ;
+  value $ptDtype
+  "H"="H: HMO"
+  "R"="R: Regional PPO"
+  "E"="E: Employer"
+  "S"="S: Standard PtD"
+  "X"="X: no medicare"
+  "*"="*: no Pt D enr info"
+  "-"="-: not enr Pt D"
+  "U"="U: missing"
+  ;
+  value $esrdflag
+  "N"="No ESRD"
+  "Y"="ESRD flag"
+  "O"="Orig reas=ESRD"
+  "C"="Cur reas=ESRD"
+  "M"="Medicare stat=ESRD"
+  ;
+  value $rec
+  "0"="0.OASI"
+  "1"="1.Disability"
+  "2"="2.ESRD"
+  "3"="3.ESRD+DIB"
+  ;
+  value $samedt
+  "S"="S.Same day"
+  "Y"="Y.Same year"
+  "N"="N.Not same"
+  ;
+
+/* for the veryold variable on bene_demog */
+  value $veryold
+  "0"="0.90 or less"
+  "1"="1.91-100"
+  "2"="2.101-110"
+  "3"="3.111-120"
+  "4"="4.121-130"
+  "5"="5.gt 130"
+  ;
